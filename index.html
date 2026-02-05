@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Ahmed ❤️ Malak</title>
+
+<style>
+body{
+  background: url('bg.jpg') no-repeat center center/cover;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: Arial;
+}
+
+.box{
+  background: rgba(255,255,255,0.85);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:300px;
+}
+
+h1{
+  color:#e91e63;
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button{
+  background:#e91e63;
+  color:white;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Ahmed ❤️ Malak</h1>
+
+<input type="text" id="user" placeholder="Username">
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">دخول ❤️</button>
+</div>
+
+<script>
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if(u === "malak" && p === "3/2/2024"){
+    window.location.href="love.html";
+  } else {
+    alert("في حاجة غلط 😢");
+  }
+}
+</script>
+
+</body>
+</html>

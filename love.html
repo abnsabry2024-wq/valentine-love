@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>بحبك يا ملك ❤️</title>
+
+<style>
+body{
+  background: linear-gradient(to bottom,#ff9a9e,#fad0c4);
+  text-align:center;
+  font-family: Arial;
+  padding:20px;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* رسالة الحب */
+.message{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  font-size:18px;
+  line-height:2.1;
+  margin-bottom:30px;
+  animation: fadeIn 3s ease-in-out forwards;
+  opacity:0;
+}
+
+/* الصور المتحركة */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  opacity:0;
+  transform: translateY(50px);
+  animation: floatIn 1s forwards;
+}
+
+.card img{
+  width:100%;
+}
+
+.card p{
+  padding:10px;
+  font-size:16px;
+  color:#e91e63;
+}
+
+/* حركة دخول الرسالة والصور */
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes floatIn{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* قلب متحرك */
+.heart{
+  position:absolute;
+  font-size:40px;
+  color:#e91e63;
+  animation: heartMove 4s infinite;
+  user-select:none;
+}
+
+@keyframes heartMove{
+  0%{transform:translateY(0) scale(1);}
+  25%{transform:translateY(-20px) scale(1.2);}
+  50%{transform:translateY(-40px) scale(1);}
+  75%{transform:translateY(-60px) scale(1.2);}
+  100%{transform:translateY(-80px) scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Ahmed ❤️ Malak 💖</h1>
+
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="message">
+💌 ملك ❤️  
+مش عارف أبدأ منين… بس اللي متأكد منه إني عمري ما حسّيت بالأمان غير وأنا معاكي  
+حضنك هو المكان الوحيد اللي قلبي بيرتاح فيه  
+وصوتك هو الحاجة اللي بتهدّي أي وجع جوايا 💕  
+
+من أول يوم دخلتي حياتي  
+وانتي غيرتيّني للأحسن  
+ضحكتك بتصلّح يومي  
+ونظرة عينك بتنسيني الدنيا كلها ✨  
+
+بحبك مش عشان حاجة  
+بحبك عشان انتي ملك  
+بحبك بكل تفاصيلك  
+بعفويتك، بزَعلك، بضحكك، وبقلبك اللي شبه ما فيش ❤️  
+
+أنا أوعدك أفضّل جنبك  
+وقت الفرح ووقت الزعل  
+وأختارك كل يوم من أول وجديد  
+لأنك أحلى اختيار في حياتي 👑💖  
+
+بحبك قد ما الكلام ما يكفي  
+وقد ما الأغاني ما توصف  
+وقد ما العمر كله ❤️  
+
+إنتي ملك قلبي وروحي وكل حياتي 👸💝  
+💖💖💖
+</div>
+
+<div class="gallery">
+<div class="card" style="animation-delay:0.5s">
+<img src="1.jpg">
+<p>ضحكتك بتدفي قلبي 😍</p>
+</div>
+
+<div class="card" style="animation-delay:1s">
+<img src="2.jpg">
+<p>حضنك أمان الدنيا 💕</p>
+</div>
+
+<div class="card" style="animation-delay:1.5s">
+<img src="3.jpg">
+<p>إنتي الحلم اللي اتحقق 🌸</p>
+</div>
+
+<div class="card" style="animation-delay:2s">
+<img src="4.jpg">
+<p>معاكي كل حاجة حلوة ❤️</p>
+</div>
+
+<div class="card" style="animation-delay:2.5s">
+<img src="5.jpg">
+<p>ملكي للأبد 👑</p>
+</div>
+</div>
+
+<!-- قلوب بتطلع -->
+<script>
+setInterval(()=>{
+  let heart = document.createElement('div');
+  heart.className='heart';
+  heart.style.left=Math.random()*90+'vw';
+  heart.style.top='80vh';
+  heart.innerText='❤️';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),4000);
+},500);
+</script>
+
+</body>
+</html>
