@@ -15,7 +15,6 @@
     overflow-x: hidden;
   }
 
-  /* Navbar */
   nav {
     background:#222; padding:10px; text-align:center; position: relative; z-index: 10;
   }
@@ -23,19 +22,37 @@
     color:pink; margin:0 15px; text-decoration:none; font-weight:bold;
   }
 
-  /* Container */
+  /* مستطيل العدّاد */
+  .countdown-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 900px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .countdown-box div {
+    background: rgba(255,192,203,0.3);
+    padding: 15px 20px;
+    border-radius: 15px;
+    min-width: 80px;
+  }
+
   .container {
     background: rgba(0,0,0,0.6);
-    margin: 30px auto;
-    padding: 30px;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 20px;
     width: 90%;
     max-width: 800px;
     overflow-y: auto;
-    max-height: 80vh;
     position: relative;
     z-index: 10;
-    animation: fadeIn 2s ease;
   }
 
   h1 { margin-bottom: 20px; font-size: 2em; color: pink; }
@@ -43,30 +60,18 @@
   p {
     font-size: 1.1em;
     line-height: 1.6em;
-    margin-bottom: 30px;
     text-align: right;
-    animation: fadeIn 3s ease;
   }
 
-  .countdown { font-size: 1.5em; color: yellow; margin-top: 20px; }
-
-  /* Fade animation */
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px);}
-    100% { opacity: 1; transform: translateY(0);}
-  }
-
-  /* Flying hearts */
+  /* Hearts */
   .heart {
     position: fixed;
     width: 20px; height: 20px;
     background: pink;
     transform: rotate(45deg);
-    left: 50%;
-    bottom: 0;
     z-index: 5;
-    animation: fly 5s linear infinite;
     pointer-events: none;
+    animation: fly 5s linear forwards;
   }
   .heart::before,
   .heart::after {
@@ -105,6 +110,17 @@
   <a href="gallery.html">الصور</a>
 </nav>
 
+<!-- مستطيل العدّاد -->
+<div class="countdown-box" id="countdown-box">
+  <div><span id="years">0</span><br>سنين</div>
+  <div><span id="months">0</span><br>شهور</div>
+  <div><span id="days">0</span><br>أيام</div>
+  <div><span id="hours">0</span><br>ساعات</div>
+  <div><span id="minutes">0</span><br>دقائق</div>
+  <div><span id="seconds">0</span><br>ثواني</div>
+</div>
+
+<!-- الرسالة الطويلة -->
 <div class="container">
   <h1>💖 رسالة حب إلى ملك 💖</h1>
   <p>
@@ -128,10 +144,8 @@
     ربنا يفرح قلبك ويريحك ويهديكي ويجعلك فرحانه دايما ومشوفش فيكي اي حاجه وحشه و حته مني ♥️🫂  
     انا كل يوم بيعدي عليا ف وجودك هو عيد حب بالنسبالي  
     لان نا حبي بيتجدد بوجودك يروح قلبي وحته مني وأغلي من روحي🥺♥️🫂  
-    كل عيد وانتي عيدي ي اجمل بنوته شافتها عنيا 😉👀♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️🫵🏻🫂💍
+    كل عيد وانتي عيدي ي اجمل بنوته شافتها عنيا 😉👀♥️
   </p>
-
-  <div class="countdown" id="countdown"></div>
 </div>
 
 <audio autoplay loop>
@@ -139,48 +153,51 @@
 </audio>
 
 <script>
-function calculateTime() {
-  const startDate = new Date('2025-03-02T00:00:00');
+// حساب العدّاد
+function updateCountdown() {
+  const start = new Date('2025-03-02T00:00:00');
   const now = new Date();
-  let diff = now - startDate;
+  let diff = now - start;
 
   const seconds = Math.floor(diff / 1000) % 60;
-  const minutes = Math.floor(diff / (1000 * 60)) % 60;
-  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const minutes = Math.floor(diff / (1000*60)) % 60;
+  const hours = Math.floor(diff / (1000*60*60)) % 24;
+  const days = Math.floor(diff / (1000*60*60*24));
   const months = Math.floor(days / 30);
   const remainingDays = days % 30;
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
 
-  document.getElementById('countdown').textContent =
-    months + " شهور، " +
-    remainingDays + " أيام، " +
-    hours + " ساعات، " +
-    minutes + " دقائق، " +
-    seconds + " ثواني منذ 2/3/2025";
+  document.getElementById('years').textContent = years;
+  document.getElementById('months').textContent = remainingMonths;
+  document.getElementById('days').textContent = remainingDays;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
 }
 
-setInterval(calculateTime, 1000);
+setInterval(updateCountdown, 1000);
 
 // نجوم متلألئة
 for(let i=0;i<50;i++){
   let star = document.createElement('div');
-  star.className = 'star';
-  star.style.top = Math.random()*100 + 'vh';
-  star.style.left = Math.random()*100 + 'vw';
-  star.style.width = Math.random()*2+1 + 'px';
-  star.style.height = star.style.width;
-  star.style.animationDuration = (Math.random()*2+1)+'s';
+  star.className='star';
+  star.style.top=Math.random()*100+'vh';
+  star.style.left=Math.random()*100+'vw';
+  star.style.width=Math.random()*2+1+'px';
+  star.style.height=star.style.width;
+  star.style.animationDuration=(Math.random()*2+1)+'s';
   document.body.appendChild(star);
 }
 
 // قلوب طايرة
 setInterval(()=>{
   let heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random()*100 + 'vw';
+  heart.className='heart';
+  heart.style.left = Math.random()*100+'vw';
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),5000);
-},500);
+},400);
 </script>
 
 </body>
