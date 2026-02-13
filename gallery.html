@@ -7,37 +7,103 @@
 <style>
   body {
     margin:0; padding:0;
-    background: #111; /* خلفية هادية */
+    background: url('assets/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     color: #fff;
+    overflow-x: hidden;
+    perspective: 1px;
+    transform-style: preserve-3d;
   }
+
+  /* Navbar */
+  nav {
+    background:#222; padding:10px; text-align:center; position: relative; z-index: 10;
+  }
+  nav a {
+    color:pink; margin:0 15px; text-decoration:none; font-weight:bold;
+  }
+
   h1 {
     text-align: center;
     margin: 30px 0;
     color: pink;
     font-size: 2em;
   }
+
+  /* Gallery */
   .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    position: relative;
+    z-index: 10;
+    transform-style: preserve-3d;
   }
   .gallery img {
     width: 200px;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(255,192,203,0.7);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255,192,203,0.5);
+    transition: transform 0.8s ease, box-shadow 0.5s ease, opacity 1s ease;
+    opacity: 0;
+  }
+  .gallery img.show {
+    opacity: 1;
   }
   .gallery img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(20px);
     box-shadow: 0 0 25px rgba(255,192,203,1);
   }
+
+  /* Stars */
+  .star {
+    position: fixed;
+    width: 2px; height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    z-index: 1;
+  }
+  @keyframes twinkle { 0% { opacity:0.2;} 100% { opacity:1;} }
+
+  /* Hearts */
+  .heart {
+    position: fixed;
+    width: 20px; height: 20px;
+    background: pink;
+    transform: rotate(45deg);
+    z-index: 5;
+    pointer-events: none;
+    animation: fly 5s linear forwards;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    background: pink;
+    border-radius: 50%;
+  }
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: 10px; top: 0; }
+
+  @keyframes fly {
+    0% { transform: translateX(0) translateY(0) rotate(45deg); opacity:1;}
+    100% { transform: translateX(calc(-50vw + 100px)) translateY(-100vh) rotate(45deg); opacity:0;}
+  }
+
 </style>
 </head>
 <body>
+
+<nav>
+  <a href="index.html">الصفحة الرئيسية</a>
+  <a href="countdown.html">العدّاد & الرسالة</a>
+  <a href="gallery.html">الصور</a>
+</nav>
 
 <h1>💖 صور الحب 💖</h1>
 
@@ -48,6 +114,46 @@
   <img src="assets/4.jpg" alt="حب 4">
   <img src="assets/5.jpg" alt="حب 5">
 </div>
+
+<audio autoplay loop>
+  <source src="assets/song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+// نجوم متلألئة
+for(let i=0;i<50;i++){
+  let star = document.createElement('div');
+  star.className = 'star';
+  star.style.top = Math.random()*100 + 'vh';
+  star.style.left = Math.random()*100 + 'vw';
+  star.style.width = Math.random()*2+1 + 'px';
+  star.style.height = star.style.width;
+  star.style.animationDuration = (Math.random()*2+1)+'s';
+  document.body.appendChild(star);
+}
+
+// ظهور الصور تدريجيا (سلس)
+const images = document.querySelectorAll('.gallery img');
+images.forEach((img, index) => {
+  setTimeout(()=> img.classList.add('show'), index*400);
+});
+
+// قلوب طايرة بشكل مستمر
+setInterval(()=>{
+  let heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random()*100 + 'vw';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+},400);
+
+// تأثير Parallax عند النزول
+window.addEventListener('scroll', () => {
+  const gallery = document.querySelector('.gallery');
+  const scroll = window.scrollY;
+  gallery.style.transform = `translateZ(-${scroll*0.1}px)`;
+});
+</script>
 
 </body>
 </html>
