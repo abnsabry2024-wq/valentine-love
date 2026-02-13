@@ -16,9 +16,8 @@
     transform-style: preserve-3d;
   }
 
-  /* Navbar */
   nav {
-    background:#222; padding:10px; text-align:center; position: relative; z-index: 10;
+    background:#222; padding:10px; text-align:center;
   }
   nav a {
     color:pink; margin:0 15px; text-decoration:none; font-weight:bold;
@@ -26,20 +25,17 @@
 
   h1 {
     text-align: center;
-    margin: 30px 0;
+    margin: 20px 0;
     color: pink;
     font-size: 2em;
   }
 
-  /* Gallery */
   .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     padding: 20px;
-    position: relative;
-    z-index: 10;
     transform-style: preserve-3d;
   }
   .gallery img {
@@ -94,7 +90,6 @@
     0% { transform: translateX(0) translateY(0) rotate(45deg); opacity:1;}
     100% { transform: translateX(calc(-50vw + 100px)) translateY(-100vh) rotate(45deg); opacity:0;}
   }
-
 </style>
 </head>
 <body>
@@ -123,26 +118,26 @@
 // نجوم متلألئة
 for(let i=0;i<50;i++){
   let star = document.createElement('div');
-  star.className = 'star';
-  star.style.top = Math.random()*100 + 'vh';
-  star.style.left = Math.random()*100 + 'vw';
-  star.style.width = Math.random()*2+1 + 'px';
-  star.style.height = star.style.width;
-  star.style.animationDuration = (Math.random()*2+1)+'s';
+  star.className='star';
+  star.style.top=Math.random()*100+'vh';
+  star.style.left=Math.random()*100+'vw';
+  star.style.width=Math.random()*2+1+'px';
+  star.style.height=star.style.width;
+  star.style.animationDuration=(Math.random()*2+1)+'s';
   document.body.appendChild(star);
 }
 
-// ظهور الصور تدريجيا (سلس)
+// ظهور الصور تدريجيا
 const images = document.querySelectorAll('.gallery img');
 images.forEach((img, index) => {
   setTimeout(()=> img.classList.add('show'), index*400);
 });
 
-// قلوب طايرة بشكل مستمر
+// قلوب طايرة
 setInterval(()=>{
   let heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random()*100 + 'vw';
+  heart.className='heart';
+  heart.style.left = Math.random()*100+'vw';
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),5000);
 },400);
