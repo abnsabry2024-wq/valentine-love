@@ -12,64 +12,126 @@
     font-family: Arial, sans-serif;
     color: #fff;
     text-align: center;
+    overflow-x: hidden;
   }
+
+  /* Navbar */
+  nav {
+    background:#222; padding:10px; text-align:center; position: relative; z-index: 10;
+  }
+  nav a {
+    color:pink; margin:0 15px; text-decoration:none; font-weight:bold;
+  }
+
+  /* Container */
   .container {
     background: rgba(0,0,0,0.6);
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 30px;
     border-radius: 20px;
     width: 90%;
-    max-width: 700px;
+    max-width: 800px;
+    overflow-y: auto;
+    max-height: 80vh;
+    position: relative;
+    z-index: 10;
+    animation: fadeIn 2s ease;
   }
-  h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: pink;
-  }
+
+  h1 { margin-bottom: 20px; font-size: 2em; color: pink; }
+
   p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.6em;
     margin-bottom: 30px;
+    text-align: right;
+    animation: fadeIn 3s ease;
   }
-  .countdown {
-    font-size: 1.5em;
-    color: yellow;
+
+  .countdown { font-size: 1.5em; color: yellow; margin-top: 20px; }
+
+  /* Fade animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px);}
+    100% { opacity: 1; transform: translateY(0);}
   }
+
+  /* Flying hearts */
+  .heart {
+    position: fixed;
+    width: 20px; height: 20px;
+    background: pink;
+    transform: rotate(45deg);
+    left: 50%;
+    bottom: 0;
+    z-index: 5;
+    animation: fly 5s linear infinite;
+    pointer-events: none;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    background: pink;
+    border-radius: 50%;
+  }
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: 10px; top: 0; }
+
+  @keyframes fly {
+    0% { transform: translateX(0) translateY(0) rotate(45deg); opacity:1;}
+    100% { transform: translateX(calc(-50vw + 100px)) translateY(-100vh) rotate(45deg); opacity:0;}
+  }
+
+  /* Stars */
+  .star {
+    position: fixed;
+    width: 2px; height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    z-index: 1;
+  }
+  @keyframes twinkle { 0% { opacity:0.2;} 100% { opacity:1;} }
+
 </style>
 </head>
 <body>
 
+<nav>
+  <a href="index.html">الصفحة الرئيسية</a>
+  <a href="countdown.html">العدّاد & الرسالة</a>
+  <a href="gallery.html">الصور</a>
+</nav>
+
 <div class="container">
   <h1>💖 رسالة حب إلى ملك 💖</h1>
   <p>
-   احلي Happy Valentines 🥺♥️day يروحي قلب ابوكي وحته منو 
-احلي واحده ف الدنيا اسم ووصف وخمسه عليكي وخمسه شويه أقسم بالله 😉♥️عروسه وست بيت قد الدنيا 
-نتي بنتي وصحبتي وامي ومراتي وام عيالي وبنتي وروحقلبي وحته مني
-كل عيد حب ونتي معايا 🥺♥️
-كل عيد حب ونتي روحي قلب ابوكي ♥️🌚
-كل عيد حب وانتي معايا يعيني الي بشوف بيها 👁️♥️
-كل عيد حب وانتي طيبه يمراتي ♥️🫂
-كل عيد وانتي جمبي يروحقلبي ولحد منبقي جدو وستو كدا 
-كل عيد وانتي نا ينور عيني 
-كل عيد وانتي بخير وسعاده 
-وبإذن الله تكوني السنه الجايه ف بيتي أو خطيبتي ع الأقل واعملك احلي عيد حب ف الدنيا دي كلها 😂♥️🫂
-نا بموت فيكي يبت ♥️🥺
-بحبك اوووي بدمنك 😌♥️
-نتي بتجري ف دمي 
-كل عيد حب وانتي طيبه ي وتيني
-ربنا يخليكي ليا وميحرمنيش منك ابدا وتفضلي جمبي ومعايا طول العمر ونفضل نحتفل بعيد الحب كل سنه وانتي مره تكوني خطيبتي والي بعدها مراتي بإذن الله ف بيتي 
-ربنا يفرح قلبك ويريحك ويهديكي ويجعلك فرحانه دايما ومشوفش فيكي اي حاجه وحشه و يحته مني♥️🫂
-انا كل يوم بيعدي عليا ف وجودك هو عيد حب بالنسبالي 
-لان نا حبي بيتجدد بوجودك يروحقلبي وحته مني وأغلي من روحي🥺♥️🫂
-كل عيد وانتي عيدي  ي اجمل بنوته شافتها عنيا😉👀♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️🫵🏻🫂💍
- ملك، كل يوم بيفرق معايا أكتر من اليوم اللي قبله…  
-    أنا مش بس بحبك، أنا بعشق كل لحظة معاكي 😍💞💖  
-    انتِ فرحة قلبي ونور عيني، وما فيش أي حاجة ممكن توصف قد إيه أنا ممتن لوجودك معايا ❤️✨🌹  
-    كل ثانية وكل دقيقة وكل يوم معاكِ ليه طعم مختلف… 😘💝  
+    احلي Happy Valentines 🥺♥️day يروحي قلب ابوكي وحته منو  
+    احلي واحده ف الدنيا اسم ووصف وخمسه عليكي وخمسه شويه أقسم بالله 😉♥️  
+    عروسه وست بيت قد الدنيا  
+    نتي بنتي وصحبتي وامي ومراتي وام عيالي وبنتي وروح قلبي وحته مني  
+    كل عيد حب ونتي معايا 🥺♥️  
+    كل عيد حب ونتي روحي قلب ابوكي ♥️🌚  
+    كل عيد حب وانتي معايا يعيني الي بشوف بيها 👁️♥️  
+    كل عيد حب وانتي طيبه يمراتي ♥️🫂  
+    كل عيد وانتي جمبي يروح قلبي ولحد منبقي جدو وستو كدا  
+    كل عيد وانتي نا ينور عيني  
+    كل عيد وانتي بخير وسعاده  
+    وبإذن الله تكوني السنه الجايه ف بيتي أو خطيبتي ع الأقل واعملك احلي عيد حب ف الدنيا دي كلها 😂♥️🫂  
+    نا بموت فيكي يبت ♥️🥺  
+    بحبك اوووي بدمنك 😌♥️  
+    نتي بتجري ف دمي  
+    كل عيد حب وانتي طيبه ووتيني  
+    ربنا يخليكي ليا وميحرمنيش منك ابدا وتفضلي جمبي ومعايا طول العمر ونفضل نحتفل بعيد الحب كل سنه وانتي مره تكوني خطيبتي والي بعدها مراتي بإذن الله ف بيتي  
+    ربنا يفرح قلبك ويريحك ويهديكي ويجعلك فرحانه دايما ومشوفش فيكي اي حاجه وحشه و حته مني ♥️🫂  
+    انا كل يوم بيعدي عليا ف وجودك هو عيد حب بالنسبالي  
+    لان نا حبي بيتجدد بوجودك يروح قلبي وحته مني وأغلي من روحي🥺♥️🫂  
+    كل عيد وانتي عيدي ي اجمل بنوته شافتها عنيا 😉👀♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️♥️🫵🏻🫂💍
   </p>
-  <div class="countdown" id="countdown">
-    <!-- الوقت هيظهر هنا -->
-  </div>
+
+  <div class="countdown" id="countdown"></div>
 </div>
 
 <audio autoplay loop>
@@ -86,8 +148,6 @@ function calculateTime() {
   const minutes = Math.floor(diff / (1000 * 60)) % 60;
   const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  
-  // تقريبا عدد الشهور (تقريبًا 30 يوم للشهر)
   const months = Math.floor(days / 30);
   const remainingDays = days % 30;
 
@@ -99,8 +159,28 @@ function calculateTime() {
     seconds + " ثواني منذ 2/3/2025";
 }
 
-// تحديث كل ثانية
 setInterval(calculateTime, 1000);
+
+// نجوم متلألئة
+for(let i=0;i<50;i++){
+  let star = document.createElement('div');
+  star.className = 'star';
+  star.style.top = Math.random()*100 + 'vh';
+  star.style.left = Math.random()*100 + 'vw';
+  star.style.width = Math.random()*2+1 + 'px';
+  star.style.height = star.style.width;
+  star.style.animationDuration = (Math.random()*2+1)+'s';
+  document.body.appendChild(star);
+}
+
+// قلوب طايرة
+setInterval(()=>{
+  let heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random()*100 + 'vw';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+},500);
 </script>
 
 </body>
