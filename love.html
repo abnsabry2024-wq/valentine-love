@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Love 💖</title>
 <style>
+/* الصفحة كلها عمودية فقط */
 body {
   margin:0; padding:0;
   background: url('assets/bg.jpg') no-repeat center center fixed;
@@ -13,35 +14,37 @@ body {
   color:#fff;
   text-align:center;
   overflow-x:hidden;
+  overflow-y:auto; /* يسمح بالنزول بس مش يمين وشمال */
 }
 
-/* العدّاد */
+/* العدّاد الكبير */
 .countdown-box {
   display:flex;
+  flex-wrap:wrap;
   justify-content:center;
-  gap:10px;
+  gap:15px;
   background: rgba(0,0,0,0.7);
-  padding:20px;
-  border-radius:20px;
+  padding:30px;
+  border-radius:30px;
   margin:50px auto 20px auto;
-  max-width: 90%;
+  max-width:95%;
 }
 .countdown-box div {
   background: rgba(255,192,203,0.3);
-  padding:15px 10px;
-  border-radius:15px;
-  min-width:60px;
+  padding:25px 15px;
+  border-radius:20px;
+  min-width:80px;
   font-weight:bold;
-  font-size:1.2em;
+  font-size:1.5em;
 }
 
 /* الرسالة */
 .message-box {
   background: rgba(0,0,0,0.6);
-  margin:20px auto;
+  margin:30px auto;
   padding:20px;
   border-radius:20px;
-  max-width:90%;
+  max-width:95%;
   font-size:1em;
   line-height:1.6em;
   text-align:right;
@@ -52,8 +55,8 @@ body {
   display:flex;
   flex-direction:column;
   gap:20px;
-  margin:20px auto;
-  max-width:90%;
+  margin:30px auto 50px auto;
+  max-width:95%;
 }
 .gallery-item {
   background: rgba(0,0,0,0.5);
@@ -109,7 +112,7 @@ body {
 </head>
 <body>
 
-<!-- العدّاد -->
+<!-- العدّاد الكبير -->
 <div class="countdown-box" id="countdown-box">
   <div><span id="years">0</span><br>سنين</div>
   <div><span id="months">0</span><br>شهور</div>
@@ -171,12 +174,13 @@ body {
   </div>
 </div>
 
+<!-- الموسيقى -->
 <audio autoplay loop>
   <source src="assets/song.mp3" type="audio/mp3">
 </audio>
 
 <script>
-// العدّاد
+// العدّاد الكبير
 function updateCountdown(){
   const start = new Date('2025-02-03T00:00:00');
   const now = new Date();
@@ -200,7 +204,6 @@ function updateCountdown(){
   document.getElementById('minutes').textContent = minutes;
   document.getElementById('seconds').textContent = seconds;
 }
-
 setInterval(updateCountdown,1000);
 
 // نجوم
